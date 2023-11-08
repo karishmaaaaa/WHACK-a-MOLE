@@ -5,8 +5,8 @@ var holes = document.querySelectorAll('.hole');
   var lastHole;
   var timeUp = false;
   var score = 0;
-  var timeLeft = 10; // Initial time limit
-  var gameRunning = false; // Flag to track if the game is already running
+  var timeLeft = 10; 
+  var gameRunning = false; 
 
   function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -49,63 +49,61 @@ var holes = document.querySelectorAll('.hole');
     playAgainButton.addEventListener('click', () => {
       modal.style.display = 'none';
 
-      // Reset time and score
+      
       timeLeft = 10;
       score = 0;
 
-      // Update displays
+     
       updateTimerDisplay();
       scoreBoard.textContent = score;
 
-      // Start the game again
       startGame();
     });
   }
 
   function startGame() {
-    if (gameRunning) return; // Check if the game is already running
-    gameRunning = true; // Set the flag to indicate the game is running
+    if (gameRunning) return; 
+    gameRunning = true; 
 
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
     timeLeft = 10;
-    updateTimerDisplay(); // Initial update
+    updateTimerDisplay(); 
     peep();
     const timerInterval = setInterval(() => {
       timeLeft--;
-      updateTimerDisplay(); // Update the time display
+      updateTimerDisplay(); 
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
         timeUp = true;
-        gameRunning = false; // Reset the flag when the game is over
+        gameRunning = false; 
         showGameOverModal();
       }
     }, 1000);
   }
 
   function bonk(e) {
-    if (!e.isTrusted || timeUp) return; // Cheater or game over!
+    if (!e.isTrusted || timeUp) return; 
 
-    // Increment the score and update the display
+    
     score++;
     scoreBoard.textContent = score;
 
-    // Select the mole from the clicked hole and add the 'up' class
     const mole = this.querySelector('.mole');
     mole.classList.add('up');
 
-    // Hide the mole after a short delay
+    
     setTimeout(() => {
       mole.classList.remove('up');
-    }, 500); // Adjust the time as needed
+    }, 500); 
   }
 
   moles.forEach(mole => mole.addEventListener('click', bonk));
 
   startButton.addEventListener('click', () => {
     if (!gameRunning) {
-      startButton.disabled = true; // Disable the start button to prevent multiple starts
+      startButton.disabled = true; 
       startGame();
     }
   });
