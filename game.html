@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHACK-a-MOLE</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <h1><span class="time-value">0</span>🔨Whack-a-mole🦔<span class="score">0</span></h1>
+<div class="modal" id="gameOverModal">
+  <p>GAME OVER</p>
+  <p>Score: <span id="finalScore">0</span></p>
+  <button id="playAgainButton">RESTART</button>
+</div>
+<div class="controls">
+  <button onClick="startGame()">Start</button>
+</div>
+
+<div class="game">
+  <div class="hole hole1">
+    <div class="mole"></div>
+  </div>
+  <div class="hole hole2">
+    <div class="mole"></div>
+  </div>
+  <div class="hole hole3">
+    <div class="mole"></div>
+  </div>
+  <div class="hole hole4">
+    <div class="mole"></div>
+  </div>
+  <div class="hole hole5">
+    <div class="mole"></div>
+  </div>
+  <div class="hole hole6">
+    <div class="mole"></div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+
+</body>
+</html>

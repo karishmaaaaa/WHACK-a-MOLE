@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: yellow;
+}
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+button{
+    height: 50px;
+    width: 90px;
+    color:black;
+    background-color: white;
+    position: relative;
+    left: 720px;
+    top: 90px;
+    border-radius: 50px;
+    font-weight: bolder;
+    font-size: large;
+}
+#mole{
+ width: 250px;
+ position: relative;
+ left: 550px;
+ margin: 10px;
+}
+#ways{
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+    bottom: 10px;
+    margin: 5px; 
+    font-weight: bolder;   
+}
+#play{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 340px;
+    left: 620px;
+    margin: 10px;
+}
