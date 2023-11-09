@@ -8,11 +8,9 @@ var holes = document.querySelectorAll('.hole');
   var timeLeft = 10;
   var gameRunning = false;
   var backgroundMusic = document.getElementById('backgroundMusic'); 
-
   function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
   }
-
   function randomHole(holes) {
     const idx = Math.floor(Math.random() * holes.length);
     const hole = holes[idx];
@@ -23,54 +21,44 @@ var holes = document.querySelectorAll('.hole');
     lastHole = hole;
     return hole;
   }
-
-  function peep() {
+  function poop() {
     const time = randomTime(200, 1000);
     const hole = randomHole(holes);
     hole.classList.add('up');
     setTimeout(() => {
       hole.classList.remove('up');
-      if (!timeUp) peep();
+      if (!timeUp) poop();
     }, time);
   }
-
   function updateTimerDisplay() {
     const timeValue = document.querySelector('.time-value');
     timeValue.textContent = timeLeft;
   }
-
   function showGameOverModal() {
     const modal = document.getElementById('gameOverModal');
     const finalScoreSpan = document.getElementById('finalScore');
     const playAgainButton = document.getElementById('playAgainButton');
-
     finalScoreSpan.textContent = score;
     modal.style.display = 'block';
-
     playAgainButton.addEventListener('click', () => {
       modal.style.display = 'none';
-
       timeLeft = 10;
       score = 0;
-
       updateTimerDisplay();
       scoreBoard.textContent = score;
-
       pauseBackgroundMusic(); 
       startGame();
     });
   }
-
   function startGame() {
     if (gameRunning) return;
     gameRunning = true;
-
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
     timeLeft = 10;
     updateTimerDisplay();
-    peep();
+    poop();
     playBackgroundMusic(); 
     const timerInterval = setInterval(() => {
       timeLeft--;
@@ -83,23 +71,17 @@ var holes = document.querySelectorAll('.hole');
       }
     }, 1000);
   }
-
   function bonk(e) {
     if (!e.isTrusted || timeUp) return;
-
     score++;
     scoreBoard.textContent = score;
-
     const mole = this.querySelector('.mole');
     mole.classList.add('up');
-
     setTimeout(() => {
       mole.classList.remove('up');
     }, 500);
   }
-
   moles.forEach(mole => mole.addEventListener('click', bonk));
-
   startButton.addEventListener('click', () => {
     if (!gameRunning) {
       startButton.disabled = true;
