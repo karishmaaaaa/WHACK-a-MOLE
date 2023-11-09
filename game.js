@@ -5,8 +5,9 @@ var holes = document.querySelectorAll('.hole');
   var lastHole;
   var timeUp = false;
   var score = 0;
-  var timeLeft = 10; 
-  var gameRunning = false; 
+  var timeLeft = 10;
+  var gameRunning = false;
+  var backgroundMusic = document.getElementById('backgroundMusic'); 
 
   function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -49,61 +50,77 @@ var holes = document.querySelectorAll('.hole');
     playAgainButton.addEventListener('click', () => {
       modal.style.display = 'none';
 
-      
       timeLeft = 10;
       score = 0;
 
-     
       updateTimerDisplay();
       scoreBoard.textContent = score;
 
+      pauseBackgroundMusic(); 
       startGame();
     });
   }
 
   function startGame() {
-    if (gameRunning) return; 
-    gameRunning = true; 
+    if (gameRunning) return;
+    gameRunning = true;
 
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
     timeLeft = 10;
-    updateTimerDisplay(); 
+    updateTimerDisplay();
     peep();
+    playBackgroundMusic(); 
     const timerInterval = setInterval(() => {
       timeLeft--;
-      updateTimerDisplay(); 
+      updateTimerDisplay();
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
         timeUp = true;
-        gameRunning = false; 
+        gameRunning = false;
         showGameOverModal();
       }
     }, 1000);
   }
 
   function bonk(e) {
-    if (!e.isTrusted || timeUp) return; 
+    if (!e.isTrusted || timeUp) return;
 
-    
     score++;
     scoreBoard.textContent = score;
 
     const mole = this.querySelector('.mole');
     mole.classList.add('up');
 
-    
     setTimeout(() => {
       mole.classList.remove('up');
-    }, 500); 
+    }, 500);
   }
 
   moles.forEach(mole => mole.addEventListener('click', bonk));
 
   startButton.addEventListener('click', () => {
     if (!gameRunning) {
-      startButton.disabled = true; 
+      startButton.disabled = true;
       startGame();
     }
   });
+
+  document.getElementById('toggleMusicButton').addEventListener('click', toggleBackgroundMusic);
+
+  function playBackgroundMusic() {
+    backgroundMusic.play();
+  }
+
+  function pauseBackgroundMusic() {
+    backgroundMusic.pause();
+  }
+
+  function toggleBackgroundMusic() {
+    if (backgroundMusic.paused) {
+      playBackgroundMusic();
+    } else {
+      pauseBackgroundMusic();
+    }
+  }
