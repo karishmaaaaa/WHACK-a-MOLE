@@ -41,23 +41,10 @@ button{
     font-size: large;
     border: 2px solid black;
 }
-
-#icon{
-    display: flex;
-    justify-content: center;
-    
-}
-.iconn{
-    background-color: darkgoldenrod;
-    border-radius: 20px;
-    width: 50px;
-    height: 40px;
-    
-}
 .btn{
     width: 75%;
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    margin-left: 150px;
+    margin-left: 160px;
 }
