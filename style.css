@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 body{
-    background-color: yellow;
+    background-image: linear-gradient(to bottom, #fbff00, #fff53f, #ffec5e, #ffe477, #ffdd8e);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 h1{
     text-align: center;
