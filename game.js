@@ -1,21 +1,26 @@
 var holes = document.querySelectorAll('.hole');
-  var scoreBoard = document.querySelector('.score');
-  var moles = document.querySelectorAll('.mole');
-  var startButton = document.getElementById('startButton');
-  var lastHole;
-  var timeUp = false;
-  var score = 0;
-  var timeLeft = 10;
-  var gameRunning = false;
-  var backgroundMusic = document.getElementById('backgroundMusic'); 
+var scoreBoard = document.querySelector('.score');
+var moles = document.querySelectorAll('.mole');
+var startButton = document.getElementById('startButton');
+var lastHole;
+var timeUp = false;
+var score = 0;
+var timeLeft = 20;
+var gameRunning = false;
+var backgroundMusic = document.getElementById('backgroundMusic'); 
+var user_name = document.getElementById('user_name')
+
+  // Function to generate random time
   function randomTime(min, max) {
+     // Calculate random time between min and max
     return Math.round(Math.random() * (max - min) + min);
   }
+
+  
   function randomHole(holes) {
     const idx = Math.floor(Math.random() * holes.length);
     const hole = holes[idx];
     if (hole === lastHole) {
-      console.log('Ah nah, that\'s the same one, bud');
       return randomHole(holes);
     }
     lastHole = hole;
@@ -40,13 +45,13 @@ var holes = document.querySelectorAll('.hole');
     const playAgainButton = document.getElementById('playAgainButton');
     finalScoreSpan.textContent = score;
     modal.style.display = 'block';
+    user_name.textContent = localStorage.getItem('name')
     playAgainButton.addEventListener('click', () => {
       modal.style.display = 'none';
-      timeLeft = 10;
+      timeLeft = 20;
       score = 0;
       updateTimerDisplay();
       scoreBoard.textContent = score;
-      pauseBackgroundMusic(); 
       startGame();
     });
   }
@@ -56,7 +61,7 @@ var holes = document.querySelectorAll('.hole');
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
-    timeLeft = 10;
+    timeLeft = 20;
     updateTimerDisplay();
     poop();
     playBackgroundMusic(); 
@@ -89,20 +94,11 @@ var holes = document.querySelectorAll('.hole');
     }
   });
 
-  document.getElementById('toggleMusicButton').addEventListener('click', toggleBackgroundMusic);
+var backgroundMusic = document.getElementById('backgroundMusic');
 
-  function playBackgroundMusic() {
-    backgroundMusic.play();
-  }
+function playBackgroundMusic() {
+  backgroundMusic.play();
+}
 
-  function pauseBackgroundMusic() {
-    backgroundMusic.pause();
-  }
-
-  function toggleBackgroundMusic() {
-    if (backgroundMusic.paused) {
-      playBackgroundMusic();
-    } else {
-      pauseBackgroundMusic();
-    }
-  }
+// Call playBackgroundMusic when the page loads
+window.onload = playBackgroundMusic;

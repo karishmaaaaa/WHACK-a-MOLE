@@ -44,3 +44,16 @@ button{
     left: 620px;
     margin: 10px;
 }
+input{
+    border: 1px solid ;
+    position: relative;
+    top: 130px;
+    left: 42vw;
+    height: 5vh;
+    width: 15vw;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: medium;
+}
+
